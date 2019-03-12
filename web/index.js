@@ -12,9 +12,17 @@ Apex = {
 		curve: "smooth"
 	},
 	toolbar: {
+		show: true,
 		tools: {
-			selection: true
-		}
+			download: true,
+			selection: true,
+			zoom: true,
+			zoomin: true,
+			zoomout: true,
+			pan: true,
+			reset: true
+		},
+		autoSelected: 'zoom'
 	},
 	animations: {
 		enabled: true,
@@ -118,6 +126,81 @@ let configVent = {
 }
 
 /**
+ * Config Pressio
+ *
+ * Configuració de la gràfica lineal de la pressio
+ */
+let configPressio = {
+	chart: {
+		id: "pressio",
+		group: "meteo-general",
+		type: "line",
+	},
+	colors: ["#E91E63"],
+	series: [{
+		data: generateDayWiseTimeSeries(new Date("11 Feb 2017").getTime(), 20, {
+			min: 10,
+			max: 30
+		})
+	}],
+	yaxis: {
+		labels: {
+			minWidth: 40
+		}
+	}
+}
+
+/**
+ * Config Humitat
+ *
+ * Configuració de la gràfica lineal de la humitat
+ */
+let configHumitat = {
+	chart: {
+		id: "humitat",
+		group: "meteo-general",
+		type: "line",
+	},
+	colors: ["#FF9800"],
+	series: [{
+		data: generateDayWiseTimeSeries(new Date("11 Feb 2017").getTime(), 20, {
+			min: 10,
+			max: 30
+		})
+	}],
+	yaxis: {
+		labels: {
+			minWidth: 40
+		}
+	}
+}
+
+/**
+ * Config Llum
+ *
+ * Configuració de la gràfica lineal de llum
+ */
+let configLlum = {
+	chart: {
+		id: "llum",
+		group: "meteo-general",
+		type: "line",
+	},
+	colors: ["#546E7A"],
+	series: [{
+		data: generateDayWiseTimeSeries(new Date("11 Feb 2017").getTime(), 20, {
+			min: 10,
+			max: 30
+		})
+	}],
+	yaxis: {
+		labels: {
+			minWidth: 40
+		}
+	}
+}
+
+/**
  * Config Pluja
  *
  * Configuració de la gràfica d"arees de la pluja
@@ -158,72 +241,20 @@ let configHeatmap = {
 		enabled: false
 	},
 	colors: ["#008FFB"],
-	series: [{
-		name: "Metric1",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	},
-	{
-		name: "Metric2",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	},
-	{
-		name: "Metric3",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	},
-	{
-		name: "Metric4",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	},
-	{
-		name: "Metric5",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	},
-	{
-		name: "Metric6",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	},
-	{
-		name: "Metric7",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	},
-	{
-		name: "Metric8",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	},
-	{
-		name: "Metric9",
-		data: generateData(18, {
-			min: 0,
-			max: 90
-		})
-	}
-	],
+	series: generateMetrics(9, 18),
 	xaxis: {
 		type: "category"
+	},
+
+	tooltip: {
+		x: {
+			// ensenyar la data quan es te ratoli sobre valor
+			show: true
+		},
+		marker: {
+			// mostrar color en tooltip
+			show: true
+		},
 	},
 
 }
@@ -231,26 +262,42 @@ let configHeatmap = {
 /**
  * Render de tots els gràfics
  */
-new ApexCharts(
-	document.querySelector("#chart-temperatura"),
-	configTemperatura
-).render();
+async function run() {
+	new ApexCharts(
+		document.querySelector("#chart-temperatura"),
+		configTemperatura
+	).render();
 
-new ApexCharts(
-	document.querySelector("#chart-vent"),
-	configVent
-).render();
+	new ApexCharts(
+		document.querySelector("#chart-vent"),
+		configVent
+	).render();
 
-new ApexCharts(
-	document.querySelector("#chart-pluja"),
-	configPluja
-).render();
+	new ApexCharts(
+		document.querySelector("#chart-pressio"),
+		configPressio
+	).render();
 
-new ApexCharts(
-	document.querySelector("#chart-heatmap"),
-	configHeatmap
-).render();
+	new ApexCharts(
+		document.querySelector("#chart-humitat"),
+		configHumitat
+	).render();
 
+	new ApexCharts(
+		document.querySelector("#chart-llum"),
+		configLlum
+	).render();
+
+	new ApexCharts(
+		document.querySelector("#chart-pluja"),
+		configPluja
+	).render();
+
+	new ApexCharts(
+		document.querySelector("#chart-heatmap"),
+		configHeatmap
+	).render();
+}
 
 /**
  * generateDayWiseTimeSeries generates a series of day & value
@@ -260,17 +307,29 @@ new ApexCharts(
  * @returns an array of arrays in [timestamp, value]
  */
 function generateDayWiseTimeSeries(baseval, count, yrange) {
-	var i = 0;
 	var series = [];
-	while (i < count) {
+	for (let i = 0; i < count; i++) {
 		var x = baseval;
 		var y = Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
 		series.push([x, y]);
 		baseval += 86400000;
-		i++;
 	}
 	return series;
+}
+
+function generateMetrics(nSeries, count) {
+	let metrics = []
+	for (let i = 1; i <= nSeries; i++) {
+		metrics.push({
+			name: "Metric" + i,
+			data: generateData(count, {
+				min: 0,
+				max: 90
+			})
+		});
+	}
+	return metrics;
 }
 
 /**
@@ -290,6 +349,9 @@ function generateData(count, yrange) {
 			y: y
 		});
 	}
-	console.log(series)
 	return series;
 }
+// run()
+document.addEventListener('DOMContentLoaded', async (event) => {
+	await run()
+})

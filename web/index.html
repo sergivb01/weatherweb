@@ -66,33 +66,33 @@
 
 		<div class="row">
 			<div class="col-md">
-				<h3>Temperatura</h3>
+				<h2>Temperatura</h2>
 				<div id="chart-temperatura"></div>
 			</div>
 			<div class="col-md">
-				<h3>Vent</h3>
+				<h2>Vent</h2>
 				<div id="chart-vent"></div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md">
-				<h3>Pressió</h3>
+				<h2>Pressió</h2>
 				<div id="chart-pressio"></div>
 			</div>
 			<div class="col-md">
-				<h3>Humitat</h3>
+				<h2>Humitat</h2>
 				<div id="chart-humitat"></div>
 			</div>
 		</div>
 
 		<div class="row">
 			<div class="col-md">
-				<h3>Llum</h3>
+				<h2>Llum</h2>
 				<div id="chart-llum"></div>
 			</div>
 			<div class="col-md">
-				<h3>Pluja</h3>
+				<h2>Pluja</h2>
 				<div id="chart-pluja"></div>
 			</div>
 		</div>
@@ -106,8 +106,8 @@
 					<ul class="list-unstyled">
 						<li class="float-lg-right"><a href="#top">Tornar amunt</a></li>
 						<li><a href="http://ieslabisbal.cat">INS la Bisbal</a></li>
-						<li><a href="#">Alguna</a></li>
-						<li><a href="#">Cosa</a></li>
+						<li><a href="" data-toggle="modal" data-target="#exampleModal">Alguna</a></li>
+						<li><a href="" data-toggle="modal" data-target="#exampleModal">Cosa</a></li>
 					</ul>
 					<p>Fet per alumnes 2n Batxillerat - INS la Bisbal</p>
 					<p>Projecte de estació meteorològica per la assignatura de Tecnologia.
@@ -122,10 +122,31 @@
 
 	</div> <!-- End container -->
 
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">No hi ha res encara</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<p>Aquesta funcionalitat encara no està afegida.😢😭😞</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.6.2/dist/apexcharts.min.js"></script>
+<script src="charts.js"></script>
 <script src="index.js"></script>
 
 </html>

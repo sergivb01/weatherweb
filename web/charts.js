@@ -118,13 +118,19 @@ configs["heatmap"] = {
 	chart: {
 		id: "heatmap",
 		group: "meteo-general",
-		height: 350,
+		height: 400,
 		type: "heatmap",
 	},
 	dataLabels: {
 		enabled: false
 	},
-	colors: ["#008FFB"],
+	colors: [
+		"#F86624",
+		"#FF9800",
+		"#EA3546",
+		"#FA4443",
+		"#D7263D"
+	],
 	series: generateMetrics(9, 18),
 	xaxis: {
 		type: "category"
@@ -151,7 +157,7 @@ function generateMetrics(nSeries, count) {
 		metrics.push({
 			name: "Metric" + i,
 			data: generateData(count, {
-				min: 0,
+				min: 10,
 				max: 90
 			})
 		});

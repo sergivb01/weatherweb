@@ -1,6 +1,6 @@
 debug: false
 arduino:
-  baseURL: "http://127.0.0.1:5500"
+  baseURL: "http://127.0.0.1:8080/mockup"
   delay: "15s"
 cache:
   expiration: "10m"

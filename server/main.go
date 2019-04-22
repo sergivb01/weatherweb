@@ -37,7 +37,9 @@ func main() {
 		d, err := time.ParseDuration(config.Config.Arduino.Delay)
 		if err != nil {
 			log.Fatalf("error while parsing duration: %v\n", err)
+			return
 		}
+
 		for {
 			err := store.FetchData(cli)
 			if err != nil {
@@ -54,6 +56,7 @@ func main() {
 
 func createRouters(r *gin.Engine) {
 	r.GET("/", routes.GetAll())
+	r.GET("/mockup", routes.Mockup())
 	r.POST("/data", routes.PublishData())
 	r.Run()
 }

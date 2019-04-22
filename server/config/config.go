@@ -13,6 +13,7 @@ type config struct {
 	Debug   bool `yaml:"debug"`
 	Arduino struct {
 		BaseURL string `yaml:"baseURL"`
+		Path    string `yaml:"path"`
 		Delay   string `yaml:delay`
 	} `yaml:"arduino"`
 	Cache struct {

@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:\\Users\\Sergi\\Documents\\Arduino\\libraries\\WiFiEsp\\src",
+                "C:\\Users\\Sergi\\Documents\\Arduino\\libraries\\SparkFunMPL3115A2",
+                "C:\\Users\\Sergi\\Documents\\Arduino\\libraries\\SparkFun_Si7021_Breakout_Library",
+                "C:\\\\Program Files (x86)\\\\Arduino\\\\tools\\\\**",
+                "C:\\\\Program Files (x86)\\\\Arduino\\\\hardware\\\\arduino\\\\avr\\\\**"
+            ],
+            "forcedInclude": [
+                "C:\\Program Files (x86)\\Arduino\\hardware\\arduino\\avr\\cores\\arduino\\Arduino.h"
+            ],
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

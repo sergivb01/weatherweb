@@ -9,10 +9,9 @@ var (
 )
 
 type ArduinoResponse struct {
-	Temperature float32 `json:"temperature"`
-	Wind        float32 `json:"wind"`
-	Pression    float32 `json:"pressure"`
-	Humidity    float32 `json:"humidity"`
-	Light       float32 `json:"light"`
-	Rain        float32 `json:"rain"`
+	Humidity    float64 `json:"humidity"`
+	Light       float64 `json:"light"`
+	Rain        float64 `json:"rain"`
+	Temperature float64 `json:"temperature"`
+	Winddir     float64 `json:"winddir"`
 }

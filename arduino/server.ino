@@ -154,6 +154,7 @@ void setup(){
 
 void httpServer()
 {
+  calcWeather();
   EthernetClient client = server.available(); 
   if (client)
   {
@@ -176,6 +177,7 @@ void httpServer()
         if (c == '\n' && currentLineIsBlank)
         {
           client.println(F("HTTP/1.1 200 OK\nContent-Type: text/html"));
+          //client.println("Access-Control-Allow-Origin: *");
           client.println();
 
           client.print("winddir=");
@@ -230,6 +232,7 @@ void httpServer()
 
 void loop(){
   httpServer();
+  
     //Keep track of which minute it is
   if(millis() - lastSecond >= 1000)
     {
@@ -275,7 +278,7 @@ void loop(){
         }
 
         //Report all readings every second
-        printWeather();
+        // printWeather();
 
         digitalWrite(STAT1, LOW); //Turn off stat LED
     }

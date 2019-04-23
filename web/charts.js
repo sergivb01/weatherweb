@@ -137,6 +137,22 @@ configs["heatmap"] = {
 	}
 }
 
+function test(){
+  console.log("a")
+  fetch("http://192.168.100.250")
+    .then(res => {
+      res.split(';').forEach(r => {
+      	el = r.split('=')
+      	const key = el[0]
+      	const val = el[1]
+      	console.log(key, val)
+      })
+    })
+    .catch(err => {
+      console.error(err)
+    })
+}
+
 function getRandomForDay() {
 	let series = []
 	let min = rnd(0)
